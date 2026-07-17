@@ -1,0 +1,35 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { galleryPreview } from '../data/site';
+---
+
+<section id="life" class="life-section section-shell">
+  <SectionHeading code="02" label="WUXI SCENERY" title="我生活的无锡，藏着许多值得记录的日常。" note="我喜欢沿着湖边和街巷慢慢走，随手拍下晚霞、花木与亮起的灯火。这些是我熟悉的无锡日常，更多城市和餐桌上的片段，也收在生活相册里。" />
+
+  <div class="photo-editorial" data-reveal>
+    {galleryPreview.map((image, index) => (
+      <figure class={`photo-editorial__item photo-editorial__item--${index + 1}`}>
+        <a href="/gallery/" aria-label={`在生活相册中查看：${image.alt}`}>
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading={index < 2 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+          <figcaption>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <strong>{image.alt}</strong>
+            <small>WUXI / {image.group}</small>
+          </figcaption>
+        </a>
+      </figure>
+    ))}
+  </div>
+
+  <div class="section-end" data-reveal>
+    <p>更多城市、风景与餐桌片段，都收在完整相册里。</p>
+    <a class="arrow-link" href="/gallery/">更多生活相册 <span>→</span></a>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+import { navigation } from '../data/site';
+---
+
+<header class="site-header" data-header>
+  <a class="site-mark" href="/" aria-label="返回首页">
+    <span class="site-mark__dot"></span>
+    <span>JH</span>
+    <span class="site-mark__index">/00</span>
+  </a>
+
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+    <span class="sr-only">打开导航</span>
+    <span></span><span></span>
+  </button>
+
+  <nav id="site-navigation" class="site-nav" aria-label="主导航">
+    {navigation.map((item) => (
+      <a href={item.href}>
+        <span>{item.code}</span>
+        {item.label}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('.site-nav');
+  const menuLabel = toggle?.querySelector<HTMLElement>('.sr-only');
+
+  if (toggle && navigation) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      navigation.classList.toggle('is-open', !isOpen);
+      document.body.classList.toggle('menu-open', !isOpen);
+      if (menuLabel) menuLabel.textContent = isOpen ? '打开导航' : '关闭导航';
+    });
+
+    navigation.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a')) {
+        toggle.setAttribute('aria-expanded', 'false');
+        navigation.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+        if (menuLabel) menuLabel.textContent = '打开导航';
+      }
+    });
+  }
+</script>

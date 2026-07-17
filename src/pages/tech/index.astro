@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactFooter from '../../components/ContactFooter.astro';
+import { openSourceThanks, site, techNotes } from '../../data/site';
+
+const extraNotes = [
+  { image: '/media/tech/02.webp', code: 'LAB-02', title: '接线与验证', text: '先让最小链路工作，再逐步增加变量。' },
+  { image: '/media/tech/04.webp', code: 'LAB-04', title: '掌心里的控制板', text: '小尺寸硬件，同样值得认真看手册和接口。' },
+  { image: '/media/tech/05.webp', code: 'LAB-05', title: '一次点屏记录', text: '从没有画面到成功启动，过程比结果更值得记住。' },
+  { image: '/media/tech/06.webp', code: 'LAB-06', title: '运动平台观察', text: '把机械结构和控制信号放到一起理解。' },
+  { image: '/media/tech/08.webp', code: 'LAB-08', title: '随身记录设备', text: '好用的工具会让调试过程少一点猜测。' },
+  { image: '/media/tech/10.webp', code: 'LAB-10', title: '小屏幕里的界面', text: '有限空间里，信息层级依然可以清楚。' },
+];
+const notes = [...techNotes, ...extraNotes].sort((a, b) => a.code.localeCompare(b.code));
+---
+
+<BaseLayout title="技术分享 · 谢佳涵" description="空闲时间摸索的硬件、工具和开源项目。">
+  <section class="page-hero section-shell">
+    <a class="back-link" href="/#tech"><span>←</span> 回到首页</a>
+    <p class="page-hero__meta">04 / SMALL LAB / 10 NOTES</p>
+    <h1>爱琢磨的小玩意</h1>
+    <p>这里不是技术百科，只是一些真实的板卡、设备和调试片段。没有可靠依据的型号与功能，不靠猜。</p>
+  </section>
+
+  <section class="section-shell lab-archive">
+    {notes.map((note) => (
+      <article data-reveal>
+        <figure><img src={note.image} alt={note.title} loading="lazy" decoding="async" /></figure>
+        <div>
+          <span>{note.code}</span>
+          <h2>{note.title}</h2>
+          <p>{note.text}</p>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="section-shell thanks-page" data-reveal>
+    <header>
+      <span>OPEN SOURCE / THANKS</span>
+      <h2>沿着别人留下的线索，继续往前走。</h2>
+    </header>
+    <div>
+      {openSourceThanks.map((item, index) => (
+        <a href={item.href} target="_blank" rel="noreferrer">
+          <span>0{index + 1}</span><strong>{item.name}</strong><p>{item.note}</p><i>↗</i>
+        </a>
+      ))}
+      <a href={site.github} target="_blank" rel="noreferrer">
+        <span>04</span><strong>我的 GitHub</strong><p>持续学习和技术探索的外部入口。</p><i>↗</i>
+      </a>
+    </div>
+  </section>
+  <ContactFooter />
+</BaseLayout>

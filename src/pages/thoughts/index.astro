@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactFooter from '../../components/ContactFooter.astro';
+import { thoughts } from '../../data/site';
+---
+
+<BaseLayout title="思考 · 谢佳涵" description="读书随笔、人生感悟，以及被新信息改变后的记录。">
+  <section class="page-hero section-shell">
+    <a class="back-link" href="/#thoughts"><span>←</span> 回到首页</a>
+    <p class="page-hero__meta">05 / THINKING / NOTES</p>
+    <h1>思考</h1>
+    <p>这些不是最终答案，只是我在某个阶段愿意留下来的判断。</p>
+  </section>
+  <section class="section-shell thought-archive">
+    {thoughts.map((thought, index) => (
+      <a href={`/thoughts/${thought.slug}/`} data-reveal>
+        <span>0{index + 1}</span>
+        <div><p>{thought.label}</p><h2>{thought.title}</h2><blockquote>{thought.quote}</blockquote></div>
+        <i>→</i>
+      </a>
+    ))}
+  </section>
+  <ContactFooter />
+</BaseLayout>

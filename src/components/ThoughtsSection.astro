@@ -1,0 +1,24 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { thoughts } from '../data/site';
+---
+
+<section id="thoughts" class="thoughts-section section-shell">
+  <SectionHeading code="05" label="THINKING" title="有些事情，值得慢一点想。" note="读书随笔、暂时的判断，以及被新信息改变以后留下的记录。" />
+
+  <div class="thought-list">
+    {thoughts.map((thought, index) => (
+      <article class="thought-card" data-reveal>
+        <a href={`/thoughts/${thought.slug}/`}>
+          <span class="thought-card__index">0{index + 1}</span>
+          <div>
+            <p>{thought.label}</p>
+            <h3>{thought.title}</h3>
+            <blockquote>{thought.quote}</blockquote>
+          </div>
+          <span class="thought-card__arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactFooter from '../../components/ContactFooter.astro';
+import { thoughts, type Thought } from '../../data/site';
+
+export function getStaticPaths() {
+  return thoughts.map((thought, index) => ({
+    params: { slug: thought.slug },
+    props: { thought, index },
+  }));
+}
+
+interface Props {
+  thought: Thought;
+  index: number;
+}
+
+const { thought, index } = Astro.props;
+const nextThought = thoughts[(index + 1) % thoughts.length];
+---
+
+<BaseLayout title={`${thought.title} · 谢佳涵`} description={thought.summary}>
+  <article>
+    <header class="page-hero section-shell article-hero">
+      <a class="back-link" href="/thoughts/"><span>←</span> 返回思考列表</a>
+      <p class="page-hero__meta">05 / THINKING / 0{index + 1}</p>
+      <h1>{thought.title}</h1>
+      <p>{thought.summary}</p>
+    </header>
+    <div class="prose">
+      <p class="article-index">NOTE 0{index + 1} · {thought.label}</p>
+      <blockquote>{thought.quote}</blockquote>
+      {thought.paragraphs.map((paragraph, paragraphIndex) => (
+        <>
+          <p>{paragraph}</p>
+          {paragraphIndex === 0 && thought.bullets && (
+            <ul>{thought.bullets.map((item) => <li>{item}</li>)}</ul>
+          )}
+        </>
+      ))}
+    </div>
+  </article>
+  <div class="section-shell page-footer-nav">
+    <a href="/thoughts/">← 全部文章</a>
+    <a href={`/thoughts/${nextThought.slug}/`}>下一篇：{nextThought.title} →</a>
+  </div>
+  <ContactFooter />
+</BaseLayout>
