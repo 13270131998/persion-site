@@ -1,0 +1,70 @@
+---
+import { interests } from '../data/site';
+---
+
+<section id="about" class="hero">
+  <div class="hero__grid">
+    <div class="hero__fantasy" aria-hidden="true">
+      <img
+        src="/media/generated/hero-outdoor-journey-v2.webp"
+        alt=""
+        width="1586"
+        height="992"
+        fetchpriority="high"
+      />
+    </div>
+
+    <div class="hero__copy">
+      <p class="hero__edition" data-reveal>PERSONAL FIELD NOTES · 2026</p>
+      <h1 data-reveal>
+        <span>谢佳涵</span>
+        <small>慢热，但始终对世界保持好奇</small>
+      </h1>
+      <p class="hero__lead" data-reveal>
+        我是谢佳涵，2000年千禧宝宝，生活在无锡。性格有点慢热，却很愿意认真认识一个人、认识一座城。平时喜欢沿着湖边和街巷随意走走，用照片记住天色、灯火与一桌好饭，也会研究 AI 工具，把突然冒出来的想法一点点变成能用的东西。
+      </p>
+      <div class="hero__actions" data-reveal>
+        <a class="button button--primary" href="#life">继续认识我 <span>↓</span></a>
+      </div>
+    </div>
+
+    <div class="hero__visual" aria-label="无锡风景、美食与工作设备照片拼贴" data-reveal>
+      <figure class="hero-photo hero-photo--life">
+        <img src="/media/gallery/wuxi/74.webp" alt="夕阳映在安静的园林水面上" width="2200" height="1291" fetchpriority="high" />
+        <figcaption><span>31.49°N</span> WUXI / GARDEN / SUNSET</figcaption>
+      </figure>
+      <figure class="hero-photo hero-photo--food">
+        <img src="/media/gallery/food/03.webp" alt="虾仁和豆苗摆成花朵的蒸蛋" width="1080" height="1404" fetchpriority="high" />
+        <figcaption><span>WEEKEND TABLE</span> HOMEMADE / FOOD</figcaption>
+      </figure>
+      <figure class="hero-photo hero-photo--work">
+        <img src="/media/work/38.webp" alt="运行中的 ETB_Dolphin 设备界面" width="2200" height="1650" fetchpriority="high" />
+        <figcaption><span>WORK LOG</span> DEVICE / INTERFACE / READY</figcaption>
+      </figure>
+      <svg class="hero-circuit" viewBox="0 0 520 430" aria-hidden="true">
+        <path d="M18 346 C118 346 126 278 205 278 S290 158 378 158 S432 118 496 118" />
+        <circle cx="18" cy="346" r="6" />
+        <circle cx="205" cy="278" r="6" />
+        <circle cx="496" cy="118" r="6" />
+      </svg>
+      <p class="hero__margin-note">生活给我温度，<br />工作教我保持精确。<br />两者在这里交汇。</p>
+    </div>
+  </div>
+
+  <div class="hero__facts-shell section-shell">
+    <div class="hero__facts" data-reveal>
+      <div>
+        <span>ABOUT / 01</span>
+        <strong>无锡 · 2000年千禧宝宝</strong>
+        <p>不算特别外向，但愿意把时间留给真正感兴趣的人和事，也喜欢记录普通日子里容易被忽略的小瞬间。</p>
+      </div>
+      {interests.map((interest, index) => (
+        <div>
+          <span>LIKE / {String(index + 1).padStart(2, '0')}</span>
+          <strong>{interest.title}</strong>
+          <p>{interest.detail}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

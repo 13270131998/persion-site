@@ -1,0 +1,39 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { projects } from '../data/site';
+---
+
+<section id="work" class="work-section">
+  <div class="section-shell">
+    <SectionHeading code="03" label="WORK LOG" title="把问题拆开，再一件件接通。" note="稳定、细节和问题定位，不写成口号，放在每一次真实的调试和交付里。" inverse />
+
+    <div class="project-list">
+      {projects.map((project, index) => (
+        <article class="project-card" data-reveal>
+          <div class="project-card__media">
+            <div class="project-card__meta">
+              <span>{project.code}</span>
+              <span>{project.years}</span>
+            </div>
+            <img src={project.cover} alt={`${project.title}项目照片`} loading="lazy" decoding="async" />
+            <span class="project-card__signal">CH {index + 1} / READY</span>
+          </div>
+          <div class="project-card__body">
+            <h3>{project.title}</h3>
+            <p class="project-card__summary">{project.summary}</p>
+            <p><strong>我负责</strong>{project.role}</p>
+            <p><strong>做到什么</strong>{project.result}</p>
+            <ul aria-label="项目技术">
+              {project.technologies.map((technology) => <li>{technology}</li>)}
+            </ul>
+            <a class="project-card__link" href={`/work/#${project.slug}`}>打开项目档案 <span>→</span></a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="work-actions" data-reveal>
+      <a class="button button--signal" href="/work/">查看完整项目档案 <span>→</span></a>
+    </div>
+  </div>
+</section>

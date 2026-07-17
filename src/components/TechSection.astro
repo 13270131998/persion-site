@@ -1,0 +1,45 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { openSourceThanks, site, techNotes } from '../data/site';
+---
+
+<section id="tech" class="tech-section section-shell">
+  <SectionHeading code="04" label="SMALL LAB" title="空闲时间，琢磨一点小玩意。" note="它们未必宏大，但每一次接线、点亮、测量和记录，都让下一次解决问题更快一点。" />
+
+  <div class="lab-grid" data-reveal>
+    {techNotes.map((note, index) => (
+      <article class:list={['lab-note', { 'lab-note--wide': index === 0 || index === 3 }]}>
+        <img src={note.image} alt={note.title} loading="lazy" decoding="async" />
+        <div>
+          <span>{note.code}</span>
+          <h3>{note.title}</h3>
+          <p>{note.text}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="open-source" data-reveal>
+    <div class="open-source__intro">
+      <span>OPEN SOURCE / THANKS</span>
+      <h3>谢谢那些愿意把经验公开的人。</h3>
+      <p>很多学习和生活里的小问题，都是沿着别人留下的线索慢慢解决的。</p>
+    </div>
+    <ol>
+      {openSourceThanks.map((item) => (
+        <li>
+          <a href={item.href} target="_blank" rel="noreferrer">
+            <strong>{item.name}</strong>
+            <span>{item.note}</span>
+            <i aria-hidden="true">↗</i>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <div class="section-end" data-reveal>
+    <p>持续学习，不假装什么都会。</p>
+    <a class="arrow-link" href={site.github} target="_blank" rel="noreferrer">去我的 GitHub 看看 <span>↗</span></a>
+  </div>
+</section>

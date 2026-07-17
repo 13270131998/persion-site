@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactFooter from '../../components/ContactFooter.astro';
+import GalleryLightbox from '../../components/react/GalleryLightbox';
+import media from '../../data/media.generated.json';
+
+const images = media.gallery;
+---
+
+<BaseLayout title="生活相册 · 谢佳涵" description="南京、苏州、无锡和许多认真吃饭的瞬间。">
+  <section class="page-hero section-shell">
+    <a class="back-link" href="/#life"><span>←</span> 回到首页</a>
+    <p class="page-hero__meta">02 / LIFE ALBUM / {images.length} FRAMES</p>
+    <h1>生活相册</h1>
+    <p>照片不一定都有什么大道理。它们只是提醒我：那天的风、灯火和一桌饭，确实发生过。</p>
+  </section>
+
+  <section class="section-shell gallery-page">
+    <GalleryLightbox images={images} groups={['无锡', '南京', '苏州', '美食']} client:visible />
+  </section>
+  <ContactFooter />
+</BaseLayout>

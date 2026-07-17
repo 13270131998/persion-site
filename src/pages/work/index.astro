@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactFooter from '../../components/ContactFooter.astro';
+import { projects } from '../../data/site';
+---
+
+<BaseLayout title="工作中的我 · 谢佳涵" description="嵌入式软件、Linux系统、工业通信和真实项目记录。" pageClass="work-page">
+  <section class="page-hero section-shell">
+    <a class="back-link" href="/#work"><span>←</span> 回到首页</a>
+    <p class="page-hero__meta">03 / WORK LOG / EMBEDDED ENGINEERING</p>
+    <h1>工作中的我</h1>
+    <p>比起写“认真负责”，我更愿意把做过的设备、拆过的问题和最后交付的结果放在这里。</p>
+  </section>
+
+  <section class="section-shell work-dossier">
+    {projects.map((project) => (
+      <article id={project.slug} class="dossier" data-reveal>
+        <header>
+          <span>{project.code}</span>
+          <p>{project.years}</p>
+          <h2>{project.title}</h2>
+          <blockquote>{project.summary}</blockquote>
+        </header>
+        <div class="dossier__facts">
+          <div><span>ROLE / 我负责</span><p>{project.role}</p></div>
+          <div><span>RESULT / 做到什么</span><p>{project.result}</p></div>
+          <ul>{project.technologies.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <div class="dossier__gallery">
+          {project.images.map((image, index) => (
+            <figure>
+              <img src={image} alt={`${project.title}项目记录 ${index + 1}`} loading="lazy" decoding="async" />
+              <figcaption>{project.code} / FRAME {String(index + 1).padStart(2, '0')}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <ContactFooter />
+</BaseLayout>

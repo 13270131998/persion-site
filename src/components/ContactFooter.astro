@@ -1,0 +1,36 @@
+---
+import { site } from '../data/site';
+---
+
+<footer class="contact-footer">
+  <div class="section-shell contact-footer__grid">
+    <div class="contact-footer__title" data-reveal>
+      <span>END / OR / HELLO</span>
+      <h2>如果想认识我，<br />就从一句你好开始。</h2>
+    </div>
+
+    <div class="contact-footer__details" data-reveal>
+      <a href={`tel:${site.phone}`}>
+        <span>PHONE</span>
+        <strong>{site.phone}</strong>
+      </a>
+      <a href={`mailto:${site.email}`}>
+        <span>EMAIL</span>
+        <strong>{site.email}</strong>
+      </a>
+      <a href={site.github} target="_blank" rel="noreferrer">
+        <span>GITHUB</span>
+        <strong>13270131998 ↗</strong>
+      </a>
+    </div>
+
+    <figure class="contact-footer__qr" data-reveal>
+      <img src="/media/personal/wechat-qr.png" alt="谢佳涵的微信二维码" width="820" height="1214" loading="lazy" />
+      <figcaption>微信扫一扫 / 也可以长按识别</figcaption>
+    </figure>
+  </div>
+  <div class="section-shell contact-footer__bottom">
+    <p>© 2026 谢佳涵</p>
+    <a href="#main-content">回到顶部 ↑</a>
+  </div>
+</footer>
